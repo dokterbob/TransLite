@@ -10,11 +10,18 @@ enum TargetLanguage: String, CaseIterable {
     case german = "German"
     case italian = "Italian"
     case portuguese = "Portuguese"
+    case dutch = "Dutch"
+    case polish = "Polish"
+    case turkish = "Turkish"
+    case russian = "Russian"
+    case arabic = "Arabic"
+    case hindi = "Hindi"
     case chinese = "Chinese"
     case japanese = "Japanese"
     case korean = "Korean"
-    case arabic = "Arabic"
-    case russian = "Russian"
+    case vietnamese = "Vietnamese"
+    case thai = "Thai"
+    case indonesian = "Indonesian"
 
     var displayName: String { rawValue }
 }
