@@ -6,7 +6,27 @@
         <description>Updates for TransLite</description>
         <language>en</language>
 
-        <!-- Current version: 1.1.0 -->
+        <!-- Current version: 1.1.1 -->
+        <item>
+            <title>Version 1.1.1</title>
+            <pubDate>Mon, 16 Feb 2026 07:47:34 +0100</pubDate>
+            <sparkle:version>12</sparkle:version>
+            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>TransLite 1.1.1</h2>
+                <ul>
+                    <li>Added 7 new languages: Dutch, Polish, Turkish, Hindi, Vietnamese, Thai, Indonesian</li>
+                </ul>
+            ]]></description>
+            <enclosure
+                url="https://github.com/davizgarzia/TransLite/releases/download/v1.1.1/TransLite-1.1.1.dmg"
+                sparkle:edSignature="G/b/srsXg739zkoyIut36IajApYUCBt/nGeSmcPm07+E3NsNZLOuA2tj0v2HhFkbyGWNI0gXxtUCqKb4CgoACA=="
+                length="1692480"
+                type="application/octet-stream" />
+        </item>
+
+        <!-- Previous version: 1.1.0 -->
         <item>
             <title>Version 1.1.0</title>
             <pubDate>Wed, 11 Feb 2026 16:05:44 +0100</pubDate>
