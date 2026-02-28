@@ -1,17 +1,18 @@
 #!/bin/bash
 
 # Script to create a TransLite release with signing, DMG and notarization
-# Usage: ./scripts/create-release.sh 1.1.0
+# Usage: ./scripts/create-release.sh 1.2.0 14
 
 set -e
 
 VERSION=$1
+BUILD_NUMBER=$2
 DEVELOPER_ID="0FCEEAA4861A3809015D60D8BD083B396BD79016"
 NOTARY_PROFILE="TransLite"
 
-if [ -z "$VERSION" ]; then
-    echo "Usage: $0 <version>"
-    echo "Example: $0 1.1.0"
+if [ -z "$VERSION" ] || [ -z "$BUILD_NUMBER" ]; then
+    echo "Usage: $0 <version> <build_number>"
+    echo "Example: $0 1.2.0 14"
     exit 1
 fi
 
@@ -30,9 +31,11 @@ if [ -z "$SPARKLE_BIN" ]; then
     exit 1
 fi
 
-# 1. Regenerate project
-echo "1/8. Regenerating project..."
+# 1. Update version in project.yml and regenerate
+echo "1/8. Updating version and regenerating project..."
 cd "$BUILD_DIR"
+sed -i '' "s/MARKETING_VERSION: \".*\"/MARKETING_VERSION: \"$VERSION\"/" project.yml
+sed -i '' "s/CURRENT_PROJECT_VERSION: \".*\"/CURRENT_PROJECT_VERSION: \"$BUILD_NUMBER\"/" project.yml
 xcodegen generate 2>&1 | grep -E "(Created|error)" || true
 
 # 2. Build
@@ -110,7 +113,7 @@ echo ""
 echo "        <item>"
 echo "            <title>Version $VERSION</title>"
 echo "            <pubDate>$(date -R)</pubDate>"
-echo "            <sparkle:version>BUILD_NUMBER_HERE</sparkle:version>"
+echo "            <sparkle:version>$BUILD_NUMBER</sparkle:version>"
 echo "            <sparkle:shortVersionString>$VERSION</sparkle:shortVersionString>"
 echo "            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>"
 echo "            <description><![CDATA["
@@ -129,4 +132,4 @@ echo ""
 echo "Next steps:"
 echo "1. gh release create v$VERSION $DMG_PATH --title \"TransLite $VERSION\" --notes \"Changes...\""
 echo "2. Update appcast.xml with the XML above"
-echo "3. git add appcast.xml && git commit -m \"Release v$VERSION\" && git push"
+echo "3. git add appcast.xml TransLite/project.yml && git commit -m \"Release v$VERSION\" && git push"

@@ -314,6 +314,32 @@ final class AppViewModel: ObservableObject {
         }
     }
 
+    func testOpenAIKey() {
+        guard let key = keychain.getAPIKey() else { return }
+        Task {
+            statusMessage = "Testing OpenAI..."
+            do {
+                _ = try await openAI.translate(text: "Hi", apiKey: key, targetLanguage: "Spanish", tone: "Preserve the original tone")
+                statusMessage = "OpenAI key working ✓"
+            } catch {
+                statusMessage = error.localizedDescription
+            }
+        }
+    }
+
+    func testClaudeKey() {
+        guard let key = keychain.getClaudeAPIKey() else { return }
+        Task {
+            statusMessage = "Testing Claude..."
+            do {
+                _ = try await claude.translate(text: "Hi", apiKey: key, targetLanguage: "Spanish", tone: "Preserve the original tone")
+                statusMessage = "Claude key working ✓"
+            } catch {
+                statusMessage = error.localizedDescription
+            }
+        }
+    }
+
     func deleteClaudeAPIKey() {
         keychain.deleteClaudeAPIKey()
         hasClaudeAPIKey = false

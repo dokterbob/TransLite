@@ -4,6 +4,8 @@ import Foundation
 final class ClaudeClient {
     static let shared = ClaudeClient()
 
+    private static let model = "claude-haiku-4-5"
+
     private let endpoint = URL(string: "https://api.anthropic.com/v1/messages")!
     private let session = URLSession.shared
 
@@ -54,7 +56,7 @@ final class ClaudeClient {
         """
 
         let requestBody = ClaudeRequest(
-            model: "claude-haiku-4-20250514",
+            model: ClaudeClient.model,
             max_tokens: 2048,
             system: systemPrompt,
             messages: [
@@ -132,7 +134,7 @@ final class ClaudeClient {
         """
 
         let requestBody = ClaudeRequest(
-            model: "claude-haiku-4-20250514",
+            model: ClaudeClient.model,
             max_tokens: 2048,
             system: systemPrompt,
             messages: [

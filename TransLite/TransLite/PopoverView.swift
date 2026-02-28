@@ -475,12 +475,18 @@ struct PopoverView: View {
                     Spacer()
 
                     if viewModel.hasAPIKey {
-                        Button("Remove") {
-                            viewModel.deleteAPIKey()
+                        Menu {
+                            Button("Test API Key") { viewModel.testOpenAIKey() }
+                            Divider()
+                            Button("Remove", role: .destructive) { viewModel.deleteAPIKey() }
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .font(.system(size: 12, weight: .medium))
+                                .foregroundColor(.secondary)
                         }
-                        .font(.system(size: 9, weight: .medium))
-                        .buttonStyle(.bordered)
-                        .controlSize(.small)
+                        .menuStyle(.borderlessButton)
+                        .menuIndicator(.hidden)
+                        .frame(width: 24)
                     } else {
                         Button("Add") {
                             addingKeyFor = .openai
@@ -516,12 +522,18 @@ struct PopoverView: View {
                     Spacer()
 
                     if viewModel.hasClaudeAPIKey {
-                        Button("Remove") {
-                            viewModel.deleteClaudeAPIKey()
+                        Menu {
+                            Button("Test API Key") { viewModel.testClaudeKey() }
+                            Divider()
+                            Button("Remove", role: .destructive) { viewModel.deleteClaudeAPIKey() }
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .font(.system(size: 12, weight: .medium))
+                                .foregroundColor(.secondary)
                         }
-                        .font(.system(size: 9, weight: .medium))
-                        .buttonStyle(.bordered)
-                        .controlSize(.small)
+                        .menuStyle(.borderlessButton)
+                        .menuIndicator(.hidden)
+                        .frame(width: 24)
                     } else {
                         Button("Add") {
                             addingKeyFor = .claude
@@ -1263,7 +1275,8 @@ struct PopoverView: View {
     private var statusIcon: String {
         if viewModel.statusMessage.contains("success") ||
            viewModel.statusMessage.contains("Translated") ||
-           viewModel.statusMessage.contains("saved") {
+           viewModel.statusMessage.contains("saved") ||
+           viewModel.statusMessage.contains("working ✓") {
             return "checkmark.circle.fill"
         } else if viewModel.statusMessage.contains("error") ||
                   viewModel.statusMessage.contains("Failed") ||
@@ -1278,7 +1291,8 @@ struct PopoverView: View {
     private var statusColor: Color {
         if viewModel.statusMessage.contains("success") ||
            viewModel.statusMessage.contains("Translated") ||
-           viewModel.statusMessage.contains("saved") {
+           viewModel.statusMessage.contains("saved") ||
+           viewModel.statusMessage.contains("working ✓") {
             return .green
         } else if viewModel.statusMessage.contains("error") ||
                   viewModel.statusMessage.contains("Failed") ||

@@ -6,7 +6,29 @@
         <description>Updates for TransLite</description>
         <language>en</language>
 
-        <!-- Current version: 1.1.2 -->
+        <!-- Current version: 1.1.3 -->
+        <item>
+            <title>Version 1.1.3</title>
+            <pubDate>Sat, 28 Feb 2026 16:25:05 +0100</pubDate>
+            <sparkle:version>14</sparkle:version>
+            <sparkle:shortVersionString>1.1.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+                <h2>TransLite 1.1.3</h2>
+                <ul>
+                    <li>Fixed Claude translation not working</li>
+                    <li>Fixed auto-update loop on some installations</li>
+                    <li>Added Test API Key option in API keys menu</li>
+                </ul>
+            ]]></description>
+            <enclosure
+                url="https://github.com/davizgarzia/TransLite/releases/download/v1.1.3/TransLite-1.1.3.dmg"
+                sparkle:edSignature="i2izSaiNUs6EhtBhjyUzuS4FrhCsWKQVeLlwxl0xiA411BNeHnE88JfN+oH4ih2Mhj0dIOovqEuxodE+Ae3VBQ=="
+                length="1700790"
+                type="application/octet-stream" />
+        </item>
+
+        <!-- Previous version: 1.1.2 -->
         <item>
             <title>Version 1.1.2</title>
             <pubDate>Mon, 16 Feb 2026 23:21:52 +0100</pubDate>
